@@ -20,6 +20,9 @@ To add the script to Plesk, create the event "Domain created" in Tools & Setting
 In addition, create a new event "Default domain created (the first domain added to a subscription or webspace)" with the same information, so that the script also runs when the first standard domain is created.
 
 Now every time you create a new domain, DKIM should automatically activate and save the public key in the customer directory in the folder specified in the script.
-Note: automatic script should be executed only via Tools & Settings > Event Manager, manual execution of the script via the command line will not work.
+Note: automatic script should be executed only via Tools & Settings > Event Manager, for manual execution of the script via the command line use plesk-dkim-initialsetup.sh:
+```
+plesk bin domain -l | awk '{print "bash plesk-dkim-initialsetup.sh " $1}' | sh
+```
 
 Source: https://support.plesk.com/hc/en-us/articles/115000214973-How-to-get-the-DKIM-public-key-from-Plesk-if-DNS-is-not-installed
